@@ -6,8 +6,8 @@ export const DAYS = [
     subtitle: "El inicio de la sorpresa 💛",
     letter: [
       "Hola, mi amor.",
-      "Hoy empieza este detalle que hice para ti.",
-      "Eres mi paz, mi lugar seguro y mi sonrisa favorita.",
+      "Hoy empieza este detalle que hice para ti con mucho amor y dedicacion.",
+      "Eres mi paz, mi lugar seguro,por la que me levanto todas las mañanas y mi sonrisa mas linda.",
     ],
     photos: [
       "/nv_fotos/dia13/1.jpeg",
@@ -23,8 +23,8 @@ export const DAYS = [
     subtitle: "Nuestro día ✨",
     letter: [
       "Feliz 14, Isabella.",
-      "Gracias por estos dos años increíbles.",
-      "Tú eres mi media naranja.",
+      "Gracias por estos dos años increíbles,espero pasar mas 14 contigo.",
+      "Tú eres mi media naranja,el amor de mi vida.",
     ],
     photos: [
       "/nv_fotos/dia14/4.jpeg",
@@ -40,7 +40,7 @@ export const DAYS = [
     subtitle: "Nuestro final ♾️",
     letter: [
       "Llegaste al final.",
-      "Te amo hoy, mañana y siempre.",
+      "Te amo hoy, mañana y siempre que nunca se te olvide mi bb hermosa.",
     ],
     photos: [
       "/nv_fotos/dia15/1.jpeg",

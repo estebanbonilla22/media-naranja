@@ -14,7 +14,7 @@ import Intro from "./components/Intro";
 import HeartsBurst from "./components/HeartsBurst";
 
 // ✅ Para que tú puedas probar todos los días sin esperar
-const DEV_UNLOCK_ALL = true; // cuando lo vayas a entregar: false
+const DEV_UNLOCK_ALL = false; // cuando lo vayas a entregar: false
 
 function toLocalISODate(date = new Date()) {
   // yyyy-mm-dd en hora local
