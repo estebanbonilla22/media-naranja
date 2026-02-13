@@ -1,0 +1,437 @@
+/* Layout general */
+.page { min-height: 100vh; position: relative; overflow: hidden; font-family: ui-sans-serif, system-ui, Segoe UI, Roboto, Arial; }
+.container { position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; padding: 48px 16px; }
+.header { text-align: center; }
+.today { color: rgba(255,255,255,0.75); font-size: 14px; margin-bottom: 10px; }
+.h1 { color: white; font-size: clamp(34px, 5vw, 56px); letter-spacing: -0.02em; margin: 0; }
+.p { color: rgba(255,255,255,0.78); margin-top: 12px; max-width: 720px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+
+/* Fondo animado */
+.bgWrap { position: absolute; inset: 0; z-index: 0; }
+.bgBase { position: absolute; inset: 0; background: linear-gradient(135deg, #fb7185, #d946ef, #4f46e5); }
+.orb { position: absolute; width: 420px; height: 420px; border-radius: 999px; filter: blur(60px); opacity: 0.35; background: white; }
+.orb1 { top: -120px; left: -120px; }
+.orb2 { bottom: -140px; right: -140px; width: 520px; height: 520px; opacity: 0.25; }
+.hearts { position: absolute; inset: 0; pointer-events: none; }
+.bgVignette { position: absolute; inset: 0; background: rgba(0,0,0,0.22); }
+
+/* Grid */
+.grid { margin-top: 40px; display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 900px){ .grid { grid-template-columns: repeat(3, 1fr); } }
+
+.warn { text-align: center; color: rgba(255,255,255,0.75); margin-top: 12px; }
+.footer { margin-top: 34px; text-align: center; color: rgba(255,255,255,0.65); font-size: 14px; }
+
+/* Shake */
+.shake { animation: shake 0.45s ease-in-out; }
+@keyframes shake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(6px); }
+  100% { transform: translateX(0); }
+}
+
+/* Cards */
+.card {
+  width: 100%;
+  border-radius: 26px;
+  padding: 22px;
+  text-align: left;
+  border: 1px solid rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(14px);
+  color: white;
+  box-shadow: 0 22px 50px rgba(0,0,0,0.22);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.cardLocked { background: rgba(0,0,0,0.14); }
+.cardTop { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.cardSub { color: rgba(255,255,255,0.76); font-size: 13px; margin: 0 0 6px 0; }
+.cardTitle { font-size: 24px; margin: 0; letter-spacing: -0.01em; }
+.cardMeta { margin-top: 10px; color: rgba(255,255,255,0.70); font-size: 13px; }
+
+.lockBox {
+  width: 50px; height: 50px;
+  border-radius: 16px;
+  display: grid; place-items: center;
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.20);
+  font-size: 20px;
+}
+
+/* Shine */
+.shine {
+  position: absolute;
+  top: -30%;
+  left: -60%;
+  width: 55%;
+  height: 160%;
+  background: rgba(255,255,255,0.22);
+  filter: blur(26px);
+  transform: rotate(12deg);
+  animation: shine 3.6s linear infinite;
+  pointer-events: none;
+}
+@keyframes shine {
+  0% { transform: translateX(0) rotate(12deg); }
+  100% { transform: translateX(320%) rotate(12deg); }
+}
+
+/* Modal */
+.modalWrap{
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;      /* ✅ centrado vertical */
+  justify-content: center;  /* ✅ centrado horizontal */
+  padding: 14px;
+}
+
+.modalPanel{
+  position: relative;
+  width: 100%;
+  max-width: 820px;
+  border-radius: 26px;
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.22);
+  backdrop-filter: blur(18px);
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+
+  /* ✅ no se sale de pantalla */
+  max-height: calc(100vh - 28px);
+
+  /* ✅ layout interno */
+  display: flex;
+  flex-direction: column;
+}
+
+.modalHeader{
+  flex: 0 0 auto;
+  padding: 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.14);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+
+  /* ✅ siempre visible */
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  background: rgba(0,0,0,0.15);
+  backdrop-filter: blur(12px);
+}
+
+.modalBody{
+  flex: 1 1 auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
+  padding: 14px;
+  display: grid;
+  gap: 12px;
+
+  /* ✅ oculta scroll feo en iOS/Chrome */
+  scrollbar-width: none;        /* Firefox */
+}
+.modalBody::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+}
+
+
+
+.btnGhost {
+  padding: 10px 14px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.92);
+  cursor: pointer;
+}
+.btnGhost:hover { background: rgba(255,255,255,0.18); }
+
+.box {
+  border-radius: 22px;
+  padding: 16px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(0,0,0,0.14);
+}
+.boxTitle { color: white; margin: 0 0 10px 0; font-size: 18px; }
+.boxText p { color: rgba(255,255,255,0.86); line-height: 1.65; margin: 0 0 8px 0; }
+.muted { color: rgba(255,255,255,0.72); margin: 0; }
+
+.gridPlace {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.ph {
+  aspect-ratio: 1 / 1;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.10);
+  display: grid;
+  place-items: center;
+  color: rgba(255,255,255,0.45);
+  font-size: 12px;
+}
+
+.finale { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.22); }
+.btnPrimary {
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 0;
+  background: white;
+  color: black;
+  font-weight: 700;
+  cursor: pointer;
+}
+.btnPrimary:hover { opacity: 0.95; }
+/* Galería */
+.galleryTop{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.galleryBtns{
+  display:flex;
+  gap:10px;
+}
+.galleryFrame{
+  margin-top: 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.08);
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  display: grid;
+  place-items: center;
+}
+.galleryImg{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.02);
+  transition: transform 0.6s ease;
+  border-radius: 20px;
+}
+.galleryImg:hover{
+  transform: scale(1.06);
+}
+
+.thumbs{
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.thumb{
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.28);
+  background: rgba(255,255,255,0.18);
+  cursor: pointer;
+}
+.thumbActive{
+  background: white;
+  border-color: white;
+}
+@media (max-width: 520px) {
+  .modalWrap { padding: 10px; }
+  .modalPanel { max-height: calc(100vh - 16px); border-radius: 20px; }
+  .modalBody { padding-bottom: 20px; }
+}
+@media (max-width: 520px){
+  .modalWrap{ padding: 10px; }
+  .modalPanel{ border-radius: 20px; max-height: calc(100vh - 16px); }
+  .modalHeader{ padding: 12px; }
+  .modalTitle{ font-size: 20px; }
+  .modalSub{ font-size: 13px; }
+  .box{ padding: 12px; border-radius: 18px; }
+}
+/* ✅ En iPhone: modal FULL SCREEN (se ve perfecto) */
+@media (max-width: 520px){
+  .modalWrap{
+    padding: 0 !important;
+    align-items: stretch !important;
+    justify-content: stretch !important;
+  }
+
+  .modalPanel{
+    max-width: none !important;
+    width: 100% !important;
+    height: 100vh !important;          /* ocupa toda la pantalla */
+    max-height: 100vh !important;
+    border-radius: 0 !important;        /* estilo app */
+  }
+
+  .modalHeader{
+    border-radius: 0 !important;
+  }
+
+  .modalBody{
+    padding-bottom: 26px;
+  }
+}
+@supports (padding: env(safe-area-inset-top)){
+  .modalHeader{
+    padding-top: calc(12px + env(safe-area-inset-top));
+  }
+  .modalBody{
+    padding-bottom: calc(20px + env(safe-area-inset-bottom));
+  }
+}
+/* ✅ Fix barra negra iPhone: backdrop transparente en modal fullscreen */
+@media (max-width: 520px){
+  .modalBackdrop{
+    background: transparent !important;
+  }
+  .modalWrap{
+    background: transparent !important;
+  }
+}
+@media (max-width: 520px){
+  .modalPanel{
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+}
+
+@media (max-width: 520px){
+  body{
+    overscroll-behavior: none;
+  }
+}
+/* 🔥 FULLSCREEN REAL EN CELULAR */
+@media (max-width: 520px){
+
+  .modalWrap{
+    position: fixed !important;
+    inset: 0 !important;
+    padding: 0 !important;
+    align-items: stretch !important;
+    justify-content: stretch !important;
+    background: transparent !important;
+  }
+
+  .modalBackdrop{
+    display: none !important; /* 🔥 elimina fondo detrás */
+  }
+
+  .modalPanel{
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100dvh !important; /* 🔥 clave para iPhone */
+    max-width: none !important;
+    max-height: none !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+  }
+
+  .modalHeader{
+    position: sticky;
+    top: 0;
+  }
+
+}
+@media (max-width: 520px){
+  .modalWrap{
+    position: fixed !important;
+    inset: 0 !important;
+    padding: 0 !important;
+    align-items: stretch !important;
+    justify-content: stretch !important;
+    background: transparent !important;
+  }
+
+  .modalBackdrop{
+    display: none !important;
+  }
+
+  .modalPanel{
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100dvh !important;
+    max-width: none !important;
+    max-height: none !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+  }
+
+  .modalHeader{
+    position: sticky;
+    top: 0;
+  }
+}
+@supports (padding: env(safe-area-inset-top)){
+  .modalHeader{
+    padding-top: calc(12px + env(safe-area-inset-top));
+  }
+  .modalBody{
+    padding-bottom: calc(20px + env(safe-area-inset-bottom));
+  }
+}
+
+.player{
+  position: fixed;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  z-index: 60;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.20);
+  background: rgba(0,0,0,0.28);
+  backdrop-filter: blur(14px);
+  color: white;
+}
+
+.playerBtn{
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.12);
+  color: white;
+  font-size: 18px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.playerInfo{ flex: 1; min-width: 0; }
+.playerTitle{ font-weight: 700; font-size: 14px; opacity: 0.95; }
+
+.playerBar{
+  margin-top: 6px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.14);
+  overflow: hidden;
+}
+
+.playerFill{
+  height: 100%;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.88);
+}
